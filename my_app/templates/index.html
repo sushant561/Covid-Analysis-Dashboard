@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COVID-19 Analysis</title>
+    <style>
+        {% comment %} body { font-family: Arial, sans-serif; padding: 20px; }
+        nav { background-color: #333; padding: 10px; color: white; }
+        nav h1 { display: inline; }
+        .container { margin-top: 20px; }
+        .chart { margin-top: 20px; } {% endcomment %}
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        nav {
+            background-color: #343a40;
+            color: #fff;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+        }
+
+        nav h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        select, button {
+            padding: 0.6rem;
+            font-size: 1rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin-top: 0.5rem;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        form {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .charts {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .charts img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>COVID-19 Dashboard  -  Sushant Bhagat</h1>
+    </nav>
+
+    <div class="container">
+        <form method="get">
+            <label for="country">Select Country:</label>
+            <select name="country" id="country" onchange="this.form.submit()">
+                {% for c in countries %}
+                    <option value="{{ c }}" {% if c == selected_country %}selected{% endif %}>{{ c }}</option>
+                {% endfor %}
+            </select>
+        </form>
+
+
+        <div class="chart">
+            <h2>Bar Chart</h2>
+            <img src="{% static 'bar.png' %}" alt="Bar Chart" width="600">
+        </div>
+
+        <div class="chart">
+            <h2>Pie Chart</h2>
+            <img src="{% static 'pie.png' %}" alt="Pie Chart" width="600">
+        </div>
+    </div>
+</body>
+</html>
